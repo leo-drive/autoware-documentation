@@ -1,3 +1,5 @@
 nav:
   - index.md
+  - LidarSLAM: lidarslam
+  - LIO-SAM: lio-sam
   - Open-source SLAM algorithms: open-source-slam

@@ -16,7 +16,7 @@ Most of these algorithms already have a built-in loop-closure and pose graph opt
 
 ## List of Third Party SLAM Implementations
 
-<!-- cspell: ignore UGICP Suitesparse -->
+<!-- cspell: ignore UGICP ISCLOAM Suitesparse -->
 
 <br>
 <br>
