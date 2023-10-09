@@ -175,9 +175,12 @@ we will update extrinsic transformations between Robosense Lidar and CLAP B7 GNS
 
 ```
 
-> The mapping direction is towards to the going direction in the real world. If LiDAR sensor is backwards according to 
-> the direction you are moving, then you need to change the `extrinsicRot` too. Unless, the IMU tries to go to the 
-> wrong direction and it may occur problems.
+!!! warning
+
+    The mapping direction is towards to the going direction in the real world.
+    If LiDAR sensor is backwards, according to the direction you are moving,
+    then you need to change the extrinsicRot too.
+    Unless the IMU tries to go in the wrong direction, and it may occur problems.
 
 For example, in our Applanix POS LVX and Hesai Pandar XT32 setup, IMU direction was towards to the going direction and 
 LiDAR direction has 180 degree difference in Z-axis according to the IMU direction. In other words, they were facing back
