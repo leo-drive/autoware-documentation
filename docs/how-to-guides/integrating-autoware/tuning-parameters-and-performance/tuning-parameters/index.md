@@ -36,7 +36,7 @@ general information about the YTU Davutpaşa Campus:
 <figure markdown>
   ![ytu-campus-environment](images/ytu-campus.png){ align=center }
   <figcaption>
-    Yıldız Technical University (YTU) campus map. 
+    Yıldız Technical University (YTU) campus map.
   </figcaption>
 </figure>
 
@@ -54,7 +54,7 @@ we have converted the output map into MGRS format.
 <figure markdown>
   ![ytu-campus-pcd-map](images/ytu-campus-pcd-map.png){ align=center }
   <figcaption>
-    Yıldız Technical University (YTU) campus pointcloud map. 
+    Yıldız Technical University (YTU) campus pointcloud map.
   </figcaption>
 </figure>
 
@@ -67,6 +67,6 @@ information on the Lanelet2 map creation process, please refer to the [`Creating
 <figure markdown>
   ![ytu-campus-lanelet2-map](images/ytu-campus-lanelet2-map.png){ align=center }
   <figcaption>
-    Yıldız Technical University (YTU) campus lanelet2 map. 
+    Yıldız Technical University (YTU) campus lanelet2 map.
   </figcaption>
 </figure>
