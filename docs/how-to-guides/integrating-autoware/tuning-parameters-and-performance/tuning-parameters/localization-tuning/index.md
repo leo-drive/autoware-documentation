@@ -4,8 +4,8 @@
 
 In this section,
 our focus will be on refining localization accuracy within the YTU Campus environment through updates to localization parameters and methods.
-Our approach entails using NDT as the pose input source,
-and the Gyro Odometer as the twist input source.
+Our approach involves
+utilizing NDT as the pose input source and the Gyro Odometer as the twist input source.
 These adjustments play a pivotal role
 in achieving a heightened level of precision and reliability in our localization processes,
 ensuring optimal performance in the specific conditions of the YTU campus.

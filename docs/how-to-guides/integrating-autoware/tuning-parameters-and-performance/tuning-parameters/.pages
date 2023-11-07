@@ -1,3 +1,4 @@
 nav:
   - index.md
   - Tuning localization: localization-tuning
+  - Tuning perception: perception-tuning
