@@ -45,11 +45,109 @@ file:
     ...
     ```
 
+Also, you need to update the roi_sync.param.yaml parameter file according to your camera number.
+Firstly,
+please refer to the roi_cluster_fusion documentation for more information about this package.
+Then, you will update your camera offsets.
+For example,
+if you have four cameras for the perception detection pipeline,
+and you haven't measured their timestamps,
+you can set these camera offsets to "0" as the initial value.
+Please be careful with the offset array size; it must be equal to your camera count.
+
+```diff
+- input_offset_ms: [61.67, 111.67, 45.0, 28.33, 78.33, 95.0] # 6 cameras
++ input_offset_ms: [0.0, 0.0, 0.0, 0.0] # 4 cameras
+```
+
+If you have used different namespaces for your camera and ROI topics,
+you will need to add the input topics for camera_info,
+image_raw,
+and rois messages in the [`tier4_perception_component.launch.xml`](https://github.com/autowarefoundation/autoware_launch/blob/main/autoware_launch/launch/components/tier4_perception_component.launch.xml) file.
+
+```diff
+- <arg name="image_raw0" default="/sensing/camera/camera0/image_rect_color" description="image raw topic name"/>
++ <arg name="image_raw0" default="<YOUR-CAMERA-TOPIC-NAME>" description="image raw topic name"/>
+- <arg name="camera_info0" default="/sensing/camera/camera0/camera_info" description="camera info topic name"/>
++ <arg name="camera_info0" default="<YOUR-CAMERA-INFO-TOPIC-NAME>" description="camera info topic name"/>
+- <arg name="detection_rois0" default="/perception/object_recognition/detection/rois0" description="detection rois output topic name"/>
++ <arg name="detection_rois0" default="<YOUR-ROIS-TOPIC-NAME>" description="detection rois output topic name"/>
+```
+
 ### Tuning ground segmentation
 
-!!! warning
+The ground segmentation package removes the ground points from the input point cloud for the perception pipeline.
+In our campus environment, there are a lot of high slopes and rough roads.
+Therefore, this condition makes it difficult to accurately segment ground and non-ground points.
 
-    under construction
+For example, when we pass over speed bumps,
+there are a lot of false positives (ghost points) that appear as non-ground points,
+as shown in the image below.
+
+<figure markdown>
+  ![default-ground-segmentation](images/ground-remover-ghost-points.png){ align=center }
+  <figcaption>
+    There are some false positive (ghost)
+points on the high-slope roads with default configurations.
+  </figcaption>
+</figure>
+
+These ghost points affect the motion planner of Autoware,
+causing the vehicle to stop even though there is no obstacle on the road during autonomous driving.
+We will reduce the number of false positive non-ground points
+by fine-tuning the ground segmentation in Autoware.
+
+There are three different ground segmentation algorithms included in Autoware:
+`ray_ground_filter`, `scan_ground_filter`, and `ransac_ground_filter`.
+The default method is the `scan_ground_filter`.
+Please refer to the [`ground_segmentation` package documentation](https://autowarefoundation.github.io/autoware.universe/main/perception/ground_segmentation/)
+for more information about these methods and their parameter definitions.
+
+Firstly,
+we will change the `global_slope_max_angle_deg` value from 10 to 30 degrees at [`ground_segmentation.param.yaml`](https://github.com/autowarefoundation/autoware_launch/blob/main/autoware_launch/config/perception/obstacle_segmentation/ground_segmentation/ground_segmentation.param.yaml) parameter file.
+This change will reduce our false positive non-ground points.
+However, be cautious when increasing the threshold,
+as it may lead to an increase in the number of false negatives.
+
+```diff
+- global_slope_max_angle_deg: 10.0
++ global_slope_max_angle_deg: 30.0
+```
+
+Then we will update the split_height_distance parameter from 0.2 to 0.35 meters.
+This adjustment will help in reducing false positive non-ground points,
+especially on step-like road surfaces or in cases of misaligned multiple lidar configurations.
+
+```diff
+- split_height_distance: 0.2
++ split_height_distance: 0.35
+```
+
+Now, we will change the non_ground_height_threshold value from 0.2 to 0.3 meters.
+This will help us in reducing false positive non-ground points,
+but it may also decrease the number of true positive non-ground points
+that are below this threshold value.
+
+```diff
+- non_ground_height_threshold: 0.2
++ non_ground_height_threshold: 0.3
+```
+
+The following image illustrates the results after these fine-tunings with the ground remover package.
+
+<figure markdown>
+  ![after-ground-segmentation](images/after-tuning-ground-segmentation.png){ align=center }
+  <figcaption>
+    After tuning the ground segmentation,
+the false positive points will disappear from the same location.
+  </figcaption>
+</figure>
+
+You need to update the ground segmenation according to your environment.
+These examples are provided for high slopes and rough road conditions.
+If you have better conditions,
+you can adjust your parameters
+by referring to the [`ground_segmentation` package documentation page](https://autowarefoundation.github.io/autoware.universe/main/perception/ground_segmentation/).
 
 ### Tuning euclidean clustering
 
