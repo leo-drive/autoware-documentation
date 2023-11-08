@@ -63,23 +63,25 @@ ensuring optimal performance in the specific conditions of the YTU campus.
   please bear in mind that since this alteration enlarges the size of the NDT input point cloud,
   it will require additional resources on your processor.
 
-  ```diff
-  /**:
-    ros__parameters:
-      input_frame: "base_link"
-      output_frame: "base_link"
-  -   min_x: -60.0
-  +   min_x: -150.0
-  -   max_x: 60.0
-  +   max_x: 150.0
-  -   min_y: -60.0
-  +   min_y: -150.0
-  -   max_y: 60.0
-  +   max_y: 150.0
-      min_z: -30.0
-      max_z: 50.0
-      negative: False
-  ```
+!!! note "[`crop_box_filter_measurement_range.param.yaml`](https://github.com/autowarefoundation/autoware_launch/blob/main/autoware_launch/config/localization/crop_box_filter_measurement_range.param.yaml) parameter file:"
+
+    ```diff
+      /**:
+        ros__parameters:
+          input_frame: "base_link"
+          output_frame: "base_link"
+      -   min_x: -60.0
+      +   min_x: -150.0
+      -   max_x: 60.0
+      +   max_x: 150.0
+      -   min_y: -60.0
+      +   min_y: -150.0
+      -   max_y: 60.0
+      +   max_y: 150.0
+          min_z: -30.0
+          max_z: 50.0
+          negative: False
+      ```
 
 <figure markdown>
   ![ytu-campus-pcd-range](images/ndt-range-150m.png){ align=center }
@@ -124,17 +126,19 @@ ensuring optimal performance in the specific conditions of the YTU campus.
   so we will reduce the voxel size to improve localization accuracy.
   Feel free to experiment with tuning the voxel size for your own computer setup.
 
-  ```diff
+!!! note "[voxel_grid_filter.param.yaml](https://github.com/autowarefoundation/autoware_launch/blob/main/autoware_launch/config/localization/voxel_grid_filter.param.yaml) parameter file:"
 
-  /**:
-    ros__parameters:
-  - voxel_size_x: 3.0
-  + voxel_size_x: 1.0
-  - voxel_size_y: 3.0
-  + voxel_size_y: 1.0
-  - voxel_size_z: 3.0
-  + voxel_size_z: 1.0
-  ```
+    ```diff
+
+    /**:
+      ros__parameters:
+    - voxel_size_x: 3.0
+    + voxel_size_x: 1.0
+    - voxel_size_y: 3.0
+    + voxel_size_y: 1.0
+    - voxel_size_z: 3.0
+    + voxel_size_z: 1.0
+    ```
 
 <figure markdown>
   ![voxel-size-1.0](images/voxel-size-1.0.png){ align=center }
