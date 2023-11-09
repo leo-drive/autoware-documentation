@@ -11,7 +11,7 @@ autonomous systems operate seamlessly and efficiently in similar complex real-wo
 
 ## Yıldız Technical University Campus Environment
 
-Yıldız Technical University (YTU) is located in Istanbul, Turkey,
+[Yıldız Technical University (YTU)](https://yildiz.edu.tr/en) is located in Istanbul, Turkey,
 and it encompasses multiple campuses. One of these campuses is the
 Davutpaşa Campus, where we operate autonomous vehicles. Here is some
 general information about the YTU Davutpaşa Campus:

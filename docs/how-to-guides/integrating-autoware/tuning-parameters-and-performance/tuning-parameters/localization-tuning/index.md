@@ -30,7 +30,7 @@ ensuring optimal performance in the specific conditions of the YTU campus.
   may prove insufficient for aligning point clouds.
   The default NDT input point cloud parameters are shown below:
 
-!!! note " The default [crop_box_filter_measurement_range.param.yaml](https://github.com/autowarefoundation/autoware_launch/blob/main/autoware_launch/config/localization/crop_box_filter_measurement_range.param.yaml) file for localization util."
+!!! note "The default [crop_box_filter_measurement_range.param.yaml](https://github.com/autowarefoundation/autoware_launch/blob/main/autoware_launch/config/localization/crop_box_filter_measurement_range.param.yaml) file for localization util."
 
     ```yaml
     /**:
@@ -66,22 +66,22 @@ ensuring optimal performance in the specific conditions of the YTU campus.
 !!! note "[`crop_box_filter_measurement_range.param.yaml`](https://github.com/autowarefoundation/autoware_launch/blob/main/autoware_launch/config/localization/crop_box_filter_measurement_range.param.yaml) parameter file:"
 
     ```diff
-      /**:
-        ros__parameters:
-          input_frame: "base_link"
-          output_frame: "base_link"
-      -   min_x: -60.0
-      +   min_x: -150.0
-      -   max_x: 60.0
-      +   max_x: 150.0
-      -   min_y: -60.0
-      +   min_y: -150.0
-      -   max_y: 60.0
-      +   max_y: 150.0
-          min_z: -30.0
-          max_z: 50.0
-          negative: False
-      ```
+    /**:
+      ros__parameters:
+        input_frame: "base_link"
+        output_frame: "base_link"
+    -   min_x: -60.0
+    +   min_x: -150.0
+    -   max_x: 60.0
+    +   max_x: 150.0
+    -   min_y: -60.0
+    +   min_y: -150.0
+    -   max_y: 60.0
+    +   max_y: 150.0
+        min_z: -30.0
+        max_z: 50.0
+        negative: False
+    ```
 
 <figure markdown>
   ![ytu-campus-pcd-range](images/ndt-range-150m.png){ align=center }
