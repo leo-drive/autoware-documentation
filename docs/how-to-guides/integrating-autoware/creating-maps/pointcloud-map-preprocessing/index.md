@@ -1,4 +1,4 @@
-# Pointcloud map downsampling
+# Pointcloud map preprocessing
 
 ## Overview
 
